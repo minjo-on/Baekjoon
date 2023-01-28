@@ -13,7 +13,7 @@ public class Main{
         }
 
         if(n[0]==n[1]&&n[1]==n[2]) {
-            count+=2;   
+            count+=2;
         }else if(n[0]==n[1] || n[1]==n[2]){
             count++;
             a = n[1];
