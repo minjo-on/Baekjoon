@@ -1,47 +1,56 @@
-import java.util.Scanner;
+import java.util.*;
 public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int room[][] = new int[15][15];
+        String a = sc.next();
+        // a 숫자열을 역순으로
+        StringBuffer buffer = new StringBuffer(a);
+        a = buffer.reverse().toString();
+        String b = sc.next();
+        // b 숫자열을 역순으로
+        buffer = new StringBuffer(b);
+        b = buffer.reverse().toString();
 
-        //방 0층 인원수 설정
-        for(int i=1;i<room[0].length;i++){
-            room[0][i] = i;
+        //문자배열 공간 생성
+        int[] ca = new int[a.length()];
+        int[] cb = new int[b.length()];
+
+        //더 긴 숫자 설정
+        int max = Math.max(a.length(),b.length());
+
+        //입력
+        for(int i=0;i<a.length();i++){
+            ca[i] = a.charAt(i) - '0';
+        }
+        for(int i=0;i<b.length();i++){
+            cb[i] = b.charAt(i) - '0';
         }
 
-        //방 인원수 설정
-        for(int i=1;i<15;i++){
-            for(int k=1;k<15;k++){
-                //각 층 1호실
-                if(k==1){
-                    room[i][1] = 1;
-                }
-                //1호실을 제외한 방들
-                else{
-                    int sum = 0;
-                    for(int j=1;j<=k;j++){
-                        sum+=room[i-1][j];
-                    }
-                    room[i][k] = sum;
-                }
+        int carry = 0; //올림수
+        int[] result = new int[max+1]; //결과 값 배열
+
+        for(int i=0;i<max;i++){
+            int res = 0;//한자릿수마다 계산해서 결과 값을 여기다가 넣음
+            if(i>=ca.length){//b의 숫자 자리수가 더 클때
+                res = carry + cb[i];
+            }else if(i>=cb.length){//a의 숫자 자리수가 더 클때
+                res = carry + ca[i];
+            }else{//a,b 둘다 값이 있을 때
+                res = ca[i] + cb[i] + carry;
             }
+            if(res>9){ //올림수가 있으면 1
+                carry = 1;
+            }else carry = 0; //없으면 0
+            result[i] = res%10;//일의 자리수만 추가
+        }
+        result[max] = carry; // 마지막에 올림수가 있을 수도 있으니 넣어줌
+
+        StringBuffer re = new StringBuffer(); //출력할 결과값
+        for(int i= result.length-1;i>=0;i--){
+            re.append(result[i]);
         }
 
-        //검색할 경우의 수 입력
-        int c = sc.nextInt();
-
-        //결과값 목록 배열 설정
-        int result[] = new int[c];
-
-        //검색할 층과 방 입력 후 결과를 배열에 저장
-        for(int i = 0; i<result.length;i++){
-            int k = sc.nextInt();
-            int n = sc.nextInt();
-            result[i] = room[k][n];
-        }
-        // 결과 값 출력
-        for(int i=0;i< result.length;i++){
-            System.out.println(result[i]);
-        }
+        if(re.charAt(0)=='0') re.deleteCharAt(0); // 첫자리가 0이면 제거
+        System.out.println(re);
     }
 }
