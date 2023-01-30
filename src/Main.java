@@ -9,15 +9,21 @@ public class Main{
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(); //입력할 정수 개수
-        int count = 0; //소수 개수
-        for(int i=1;i<=999;i++){
-            //int t = sc.nextInt();
+        int m = sc.nextInt();//m의 범위부터
+        int n = sc.nextInt();//n까지의 범위
+        int sum = 0; //소수들의 총합
+        int min = 0; //소수중 최소값
+        for(int i=m;i<=n;i++){
             if(checkNum(i)) {
-                System.out.println(i);
-                count++;
+                if(sum==0) min = i;
+                sum += i;
             }
         }
-        System.out.println(count);
+        if(sum==0){
+            System.out.println(-1);
+        }else{
+            System.out.println(sum);
+            System.out.println(min);
+        }
     }
 }
