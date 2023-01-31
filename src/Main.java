@@ -1,24 +1,23 @@
 import java.util.*;
 public class Main{
     public static void main(String[] args) {
+        int[][] sketch = new int[100][100];//스케치북
+        int count = 0;//색칠된 공간 변수
         Scanner sc = new Scanner(System.in);
-        int[][] array = new int[9][9];
-        int row=0,col=0; //배열 최댓값의 행과 열
-        int max = 0;//배열 최댓값
+        int n = sc.nextInt();//색종이 개수
+        for(int i=0;i<n;i++){
+            int x = sc.nextInt();//색종이 x
+            int y = sc.nextInt();//색종이 y
+            for(int j = y;j<y+10;j++){
+                for(int k =x;k<x+10;k++){
+                    if(sketch[j][k]==0){//색종이 올린 부분이 없으면?
+                        sketch[j][k]++;//색칠하고
+                        count++;//공간 카운트 올리기
+                    }
 
-        //입력하는 동시에 비교
-        for(int i=0;i<9;i++){
-            for(int k=0;k<9;k++){
-                array[i][k] = sc.nextInt();
-                if(array[i][k]>max){//해당 배열의 값이 이전 최댓값보다 크면?
-                    max = array[i][k];// 최댓값 변경 후
-                    row=i; col=k;//해당 행과 열 저장, 인덱스가 0부터 시작하니까 +1
                 }
             }
         }
-
-        //하고 출력
-        System.out.println(max);
-        System.out.println((row+1)+" "+(col+1));
+        System.out.println(count);
     }
 }
