@@ -2,29 +2,23 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //행렬 크기 입력
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        int[][] array = new int[9][9];
+        int row=0,col=0; //배열 최댓값의 행과 열
+        int max = 0;//배열 최댓값
 
-        int[][] a = new int[n][m];//배열 a
-         //a배열 값 대입
-        for(int i=0;i<n;i++){
-            for(int k=0;k<m;k++){
-                a[i][k] = sc.nextInt();
+        //입력하는 동시에 비교
+        for(int i=0;i<9;i++){
+            for(int k=0;k<9;k++){
+                array[i][k] = sc.nextInt();
+                if(array[i][k]>max){//해당 배열의 값이 이전 최댓값보다 크면?
+                    max = array[i][k];// 최댓값 변경 후
+                    row=i; col=k;//해당 행과 열 저장, 인덱스가 0부터 시작하니까 +1
+                }
             }
         }
-        //더할 값 입력 후 a배열에 덧셈
-        for(int i=0;i<n;i++){
-            for(int k=0;k<m;k++){
-                a[i][k] += sc.nextInt();
-            }
-        }
-        //결과 출력
-        for(int i=0;i<n;i++){
-            for(int k=0;k<m;k++){
-                System.out.print(a[i][k]+" ");
-            }
-            System.out.println();
-        }
+
+        //하고 출력
+        System.out.println(max);
+        System.out.println((row+1)+" "+(col+1));
     }
 }
