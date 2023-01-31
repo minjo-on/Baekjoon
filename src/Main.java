@@ -1,34 +1,30 @@
 import java.util.*;
 public class Main{
-    static boolean checkNum(int n){
-        if(n==1) return false;
-        for(int i=2;i<=Math.sqrt(n);i++){
-            if(n%i==0) return false;
-        }
-        return true;
-    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //행렬 크기 입력
         int n = sc.nextInt();
-        var array = new ArrayList<Integer>();
-        for(int i=0;i<n;i++){
-            int c = sc.nextInt();
-            array.add(c);
-        }
+        int m = sc.nextInt();
 
-        for(int i=0;i<array.size();i++){
-            int num = array.get(i);
-            int a = num/2;
-            int b = num/2;
-            while(true){
-                if(checkNum(a)&&checkNum(b)) break;
-                else{
-                    a--;
-                    b++;
-                }
+        int[][] a = new int[n][m];//배열 a
+         //a배열 값 대입
+        for(int i=0;i<n;i++){
+            for(int k=0;k<m;k++){
+                a[i][k] = sc.nextInt();
             }
-            System.out.print(a+" ");
-            System.out.println(b);
+        }
+        //더할 값 입력 후 a배열에 덧셈
+        for(int i=0;i<n;i++){
+            for(int k=0;k<m;k++){
+                a[i][k] += sc.nextInt();
+            }
+        }
+        //결과 출력
+        for(int i=0;i<n;i++){
+            for(int k=0;k<m;k++){
+                System.out.print(a[i][k]+" ");
+            }
+            System.out.println();
         }
     }
 }
