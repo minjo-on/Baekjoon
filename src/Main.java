@@ -2,15 +2,18 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        var array = new ArrayList<Integer>();
-        for(int i=0;i<s.length();i++){
-            array.add(s.charAt(i)-'0');
+        int n = sc.nextInt();
+        int[][] arr = new int[n][2];
+        for(int i=0;i<n;i++){
+            arr[i][0] = sc.nextInt();//x좌표
+            arr[i][1] = sc.nextInt();//y좌표
         }
-        Collections.sort(array);
-        Collections.reverse(array);
-        for(int i=0;i<array.size();i++){
-            System.out.print(array.get(i));
+        Arrays.sort(arr,(a,b)-> {
+            if (a[0] == b[0]) return a[1] - b[1];//x좌표가 같아서 y좌표끼리 비교해서 음수나오면 변경
+            else return a[0] - b[0];//다르면 x좌표끼리 비교해서 음수나오면 변경
+        });
+        for(int i=0;i<n;i++){
+            System.out.println(arr[i][0]+" "+arr[i][1]);
         }
     }
 }
