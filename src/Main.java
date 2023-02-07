@@ -1,18 +1,43 @@
 import java.util.*;
-import java.io.*;
-public class Main{//시간초과 나며 ㄴ뒤 진다 어? 됐다 ㅅ발 제발 제발 됐다ㅏㅏ아아앙아
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuffer s = new StringBuffer();
-        int n = Integer.parseInt(br.readLine());
-        int[] array = new int[n];
+public class Main{//두ㅣ지게 어렵네 이거
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();//입력 개수
+        int sum = 0;//총합
+        var array = new ArrayList<Integer>();//숫자 배열
         for(int i=0;i<n;i++){
-            array[i] = Integer.parseInt(br.readLine());
+            array.add(sc.nextInt());
+            sum += array.get(i);
         }
-        Arrays.sort(array);
+        Collections.sort(array);
+        int mode_count=0;//빈도가 몇갠지
+        int mode = 0;//최빈값
+        boolean flag = false;//최빈값 중 두번째 값을 찾기 위해
         for(int i=0;i<n;i++){
-            s.append(array[i]).append('\n');
+            int jump = 0;//같은 수 넘길 값
+            int count = 1;//빈도 개수
+            int value = array.get(i);//현재 검사할 값
+
+            for(int k = i+1;k<n;k++){
+                if(value != array.get(k)) break;
+                count++;
+                jump++;
+            }
+            if(count>mode_count){//최빈값인 경우
+                mode = value;
+                mode_count = count;
+                flag = true;//첫번째를 넣었으니 true로
+            }else if(count == mode_count && flag == true){//빈도가 같고 두번째로 작은 경우
+                flag = false;//false로 바꿔주면서 최빈값이 변경되지 못하게
+                mode = value;
+            }
+
+            i+=jump;
         }
-        System.out.println(s);
+
+        System.out.println(java.lang.Math.round((double)sum/ array.size()));//평균
+        System.out.println(array.get(array.size()/2));//중앙값
+        System.out.println(mode);//최빈값
+        System.out.println(array.get(array.size()-1)-array.get(0));//범위
     }
 }
