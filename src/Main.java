@@ -3,22 +3,18 @@ public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[][] arr = new int[n][2];
-        int count = 0;//x좌표가 0인 개수
+        String[] arr = new String[n];
         for(int i=0;i<n;i++){
-            arr[i][0] = sc.nextInt();//x좌표
-            arr[i][1] = sc.nextInt();//y좌표
-            if(arr[i][0]==0) count++;
+            arr[i] = sc.next();
         }
         Arrays.sort(arr,(a,b)-> {
-            if (a[0] == b[0]) return a[1] - b[1];//x좌표가 같아서 y좌표끼리 비교해서 음수나오면 변경
-            else return a[0] - b[0];//다르면 x좌표끼리 비교해서 음수나오면 변경
+            if (a.length() != b.length()) return a.length() - b.length();//문자열 길이 다르면 짧은거
+            else return a.compareTo(b);//같으면 알파벳 비교
         });
-        for(int i=count-1;i<n;i++){
-            System.out.println(arr[i][0]+" "+arr[i][1]);
+        for(int i=0;i<n;i++){
+            if(i>0 && arr[i].equals(arr[i-1])) continue;
+            System.out.println(arr[i]);
         }
-        for(int i=0;i<count;i++){
-            System.out.println(arr[i][0]+" "+arr[i][1]);
-        }
+
     }
 }
