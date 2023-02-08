@@ -3,17 +3,19 @@ public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        String[] arr = new String[n];
+        String[][] arr = new String[n][2];
         for(int i=0;i<n;i++){
-            arr[i] = sc.next();
+            arr[i][0] = sc.next();
+            arr[i][1] = sc.nextLine();
         }
         Arrays.sort(arr,(a,b)-> {
-            if (a.length() != b.length()) return a.length() - b.length();//문자열 길이 다르면 짧은거
-            else return a.compareTo(b);//같으면 알파벳 비교
+            int a1 = Integer.parseInt(a[0]);
+            int b1 = Integer.parseInt(b[0]);
+            if (a1 != b1) return a1 - b1;//나이 같으면 어린거
+            else return 0;//같으면 그대로
         });
         for(int i=0;i<n;i++){
-            if(i>0 && arr[i].equals(arr[i-1])) continue;
-            System.out.println(arr[i]);
+            System.out.println(arr[i][0]+arr[i][1]);
         }
 
     }
