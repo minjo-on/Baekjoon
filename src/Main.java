@@ -1,22 +1,26 @@
+import java.sql.Array;
 import java.util.*;
-public class Main{
+public class Main{//실행은 되나 시간초과
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        String[][] arr = new String[n][2];
-        for(int i=0;i<n;i++){
-            arr[i][0] = sc.next();
-            arr[i][1] = sc.nextLine();
+        int[] arr = new int[n];
+        var list = new ArrayList<Integer>();
+        for(int i=0;i<n;i++) {
+            arr[i] = sc.nextInt();
         }
-        Arrays.sort(arr,(a,b)-> {
-            int a1 = Integer.parseInt(a[0]);
-            int b1 = Integer.parseInt(b[0]);
-            if (a1 != b1) return a1 - b1;//나이 같으면 어린거
-            else return 0;//같으면 그대로
-        });
-        for(int i=0;i<n;i++){
-            System.out.println(arr[i][0]+arr[i][1]);
+        for(int i : arr){
+            if(!list.contains(i)) list.add(i);
         }
+        Collections.sort(list);
 
+        for(int i=0;i<n;i++){
+            for(int k=0;k<list.size();k++){
+                if(arr[i] == list.get(k)){
+                    System.out.print(k+" ");
+                    break;
+                }
+            }
+        }
     }
 }
