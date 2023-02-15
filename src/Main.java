@@ -1,26 +1,21 @@
 import java.util.*;
-public class Main{//뭐라도 해서 검색 조건 만들려다가 실패하고 그냥 0부터 쉣
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        System.out.println(search(n));
-    }
-
-    static int search(int n){
-        int test = 0;
-        while(test<=n){
-            int j = test;
-            int sum = 0;
-            while(j!=0){
-                sum+=j%10;
-                j/=10;
-            }
-            if(test+sum==n){
-                return test;
-            }else{
-                test++;
-            }
+        int[][] p = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            p[i][0] = sc.nextInt();
+            p[i][1] = sc.nextInt();
         }
-        return 0;
+
+        for (int i = 0; i < n; i++) {
+            int rank = 1;
+            for (int j = 0; j < n; j++) {
+                if (i == j) continue;
+                if (p[i][0] < p[j][0] && p[i][1] < p[j][1]) rank++;
+            }
+            System.out.print(rank + " ");
+        }
     }
 }
