@@ -5,16 +5,18 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int[] arr = new int[n];
+        int arr[] = new int[n];
 
+        for(int i=0;i<n;i++){
+            arr[i] = i+1;
+        }
         int temp;
         for(int i=0;i<m;i++){
             int j = sc.nextInt();
             int k = sc.nextInt();
-            int ball = sc.nextInt();
-            for(int l=j-1;l<k;l++){
-                arr[l] = ball;
-            }
+            temp = arr[k-1];
+            arr[k-1] = arr[j-1];
+            arr[j-1] = temp;
         }
         for(int i=0;i<n;i++){
             sb.append(arr[i]+" ");
