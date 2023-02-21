@@ -3,15 +3,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int s = sc.nextInt();
-        int count = 0;
-        HashMap<String,Integer> list = new HashMap<>();
-        for(int i=0;i<n;i++){
-            list.put(sc.next(),1);
+        StringBuilder sb = new StringBuilder();
+        while(n>0){
+            sb.append("long ");
+            n-=4;
         }
-        for(int i=0;i<s;i++){
-            if(list.containsKey(sc.next())) count++;
-        }
-        System.out.println(count);
+        sb.append("int ");
+        System.out.println(sb);
     }
 }
