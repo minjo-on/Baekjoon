@@ -2,18 +2,33 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int count = 0;
-        int n = sc.nextInt();
-        int s = sc.nextInt();
+        StringBuilder sb = new StringBuilder();
         ArrayList<Integer> arr = new ArrayList<>();
-        for(int i=1;i<=n;i++){
-            if(n%i==0){
-                arr.add(i);
-                count++;
+        while(true){
+            int n = sc.nextInt();
+            arr.add(n);
+            if(n==-1) break;
+        }
+        int num = 0;
+        while(true){
+            int n = arr.get(num);
+            num++;
+            if(n==-1) break;
+            int sum = 0;
+            for(int i=1;i<=n/2;i++) {
+                if(n%i==0){
+                    sum+=i;
+                    if(i==n/2) sb.append(i);
+                    else sb.append(i+" + ");
+                }
+            }
+            if(sum==n){
+                System.out.println(n+" = "+sb);
+            }
+            else{
+                System.out.println(n + " is NOT perfect.");
+                sb.setLength(0);
             }
         }
-        if(s>count){
-            System.out.println(0);
-        }else System.out.println(arr.get(s-1));
     }
 }
