@@ -1,13 +1,10 @@
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
-
-public class Main {
-    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+import java.io.InputStreamReader;
+public class Main {//왜 틀린거임
     public static void main(String[] args) throws IOException {
-        Long n = Long.parseLong(br.readLine());
-        StringBuilder sb = new StringBuilder();
-        sb.append(n*n).append("\n").append(2);
-        System.out.println(sb);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        System.out.println(n*(n-1)/2+"\n"+2);
     }
 }
