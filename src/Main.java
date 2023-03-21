@@ -1,14 +1,36 @@
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        long n = sc.nextLong();
-        long j = sc.nextLong();
-        long a = Math.max(n,j);
-        long b = Math.min(n,j);
-        long l1 = b*(b-1)/2;
-        long l2 = a*(a+1)/2;
+    static int[] arr;
+    static boolean[] visited;
+    static int n, m;
 
-        System.out.println(l2-l1);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        arr = new int[m];
+        visited = new boolean[n];
+
+        dfs(0);
+    }
+
+    static void dfs(int depth) {
+        if (depth == m) {
+            for (int val : arr) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                arr[depth] = i + 1;
+                dfs(depth + 1);
+                visited[i] = false;
+            }
+        }
     }
 }
