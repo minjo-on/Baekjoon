@@ -2,21 +2,26 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] angle = new int[3];
-        int sum = 0;
-        for(int i=0;i<3;i++){
-            angle[i] = sc.nextInt();
-            sum+=angle[i];
-        }
-        if(sum!=180){
-            System.out.println("Error");
-        }else{
-            if (angle[0]==angle[1]&&angle[1]==angle[2]){
-                System.out.println("Equilateral");
-            }else if (angle[0]==angle[1]||angle[1]==angle[2]||angle[0]==angle[2]) {
-                System.out.println("Isosceles");
+        int[] length = new int[3];
+        while (true){
+            int max = 0;
+            int sum = 0;
+            for(int i=0;i<3;i++){
+                length[i] = sc.nextInt();
+                sum+=length[i];
+                max = Math.max(max,length[i]);
+            }
+            if(sum==0) break;
+            if(max>=sum-max){
+                System.out.println("Invalid");
             }else{
-                System.out.println("Scalene");
+                if (length[0]==length[1]&&length[1]==length[2]) {
+                    System.out.println("Equilateral");
+                }else if (length[0]==length[1]||length[1]==length[2]||length[0]==length[2]) {
+                    System.out.println("Isosceles");
+                }else {
+                    System.out.println("Scalene");
+                }
             }
         }
     }
